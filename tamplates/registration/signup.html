@@ -1,0 +1,31 @@
+{% extends 'master.html' %}
+{% block body %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong style="background-color: black;">Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<section id="form" style="margin-left: 30%;"><!--form-->
+    <div class="container">
+        <div class="col-sm-4 col-sm-offset-1">
+            <div class="login-form"><!--login form-->
+                <h2>New User Signup</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    {{ field.errors }}
+                    <p>{{ field }}</p>
+                    {% endfor %}
+
+                    <button class="btn btn-default" type="submit">SignUp</button><br>
+                    <span style="margin-left: 80px;">Already have an Account ? </span>&nbsp;<a
+                        href="{% url 'login' %}">Log in</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
